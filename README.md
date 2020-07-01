@@ -1,4 +1,4 @@
-# eportal-ws
+# smartfittingroom-ws
 
 
 ## Oracle JDBC Driver
@@ -34,7 +34,7 @@ These are the steps for first-time deployment. It envolves the fundamental setup
 
 - Goto the project root directory
 
-  > cd Work/GIT/eportal-ws
+  > cd Work/GIT/smartfittingroom-ws
 
 - Install `ojdbc`
 
@@ -54,17 +54,17 @@ These are the steps for first-time deployment. It envolves the fundamental setup
 
 - Rename jar file
 
-		mv eportal-ws-*.jar eportal-ws.jar
+		mv smartfittingroom-ws-*.jar smartfittingroom-ws.jar
 
 - Create new spring boot application
 
-  > sudo mkdir /var/eportal-ws
+  > sudo mkdir /var/smartfittingroom-ws
 
-  > sudo cp eportal-ws.jar /var/eportal-ws/eportal-ws.jar
+  > sudo cp smartfittingroom-ws.jar /var/smartfittingroom-ws/smartfittingroom-ws.jar
 
-  > sudo ln -s /var/eportal-ws/eportal-ws.jar /etc/init.d/eportal-ws
+  > sudo ln -s /var/smartfittingroom-ws/smartfittingroom-ws.jar /etc/init.d/smartfittingroom-ws
 
-  > sudo update-rc.d eportal-ws defaults
+  > sudo update-rc.d smartfittingroom-ws defaults
 
 - Application config
 
@@ -76,15 +76,15 @@ These are the steps for first-time deployment. It envolves the fundamental setup
 
   Example:
 
-		echo JAVA_OPTS=\"-Xmx256M -Dspring.profiles.active=oracle,eureka -Dserver.port=9801 -Dspring.datasource.url=jdbc:oracle:thin:epbsh/epbsh@//192.168.1.11:1521/orcl -Dspring.datasource.username=epbsh -Dspring.datasource.password=epbsh\" > eportal-ws.conf
+		echo JAVA_OPTS=\"-Xmx256M -Dspring.profiles.active=oracle,eureka -Dserver.port=9801 -Dspring.datasource.url=jdbc:oracle:thin:epbsh/epbsh@//192.168.1.11:1521/orcl -Dspring.datasource.username=epbsh -Dspring.datasource.password=epbsh\" > smartfittingroom-ws.conf
 
-		sudo mv eportal-ws.conf /var/eportal-ws/eportal-ws.conf
+		sudo mv smartfittingroom-ws.conf /var/smartfittingroom-ws/smartfittingroom-ws.conf
 
 - Start service
 
   > systemctl daemon-reload
 
-  > service eportal-ws start
+  > service smartfittingroom-ws start
 
 ### Regular Deployment
 
@@ -92,7 +92,7 @@ These are the steps for the regular deployment. If you are deploying the project
 
 - Goto the project root directory
 
-  > cd Work/GIT/eportal-ws
+  > cd Work/GIT/smartfittingroom-ws
 
 - Pull the latest changes
 
@@ -108,19 +108,19 @@ These are the steps for the regular deployment. If you are deploying the project
 
 - Rename jar file
 
-		mv eportal-ws-*.jar eportal-ws.jar
+		mv smartfittingroom-ws-*.jar smartfittingroom-ws.jar
 
 - Stop service
 
-  > service eportal-ws stop
+  > service smartfittingroom-ws stop
 
 - Overwrite existing application
 
-  > sudo cp eportal-ws.jar /var/eportal-ws/eportal-ws.jar
+  > sudo cp smartfittingroom-ws.jar /var/smartfittingroom-ws/smartfittingroom-ws.jar
 
 - Start service
 
-  > service eportal-ws start
+  > service smartfittingroom-ws start
 
 - Reload service unit
 
@@ -135,26 +135,6 @@ These are the steps for the regular deployment. If you are deploying the project
 @RequestMapping("/api")
 public class AppController
 
-	@GetMapping("/categories")
-	public ResponseEntity<List<EccatList>> getFlatCategories(
-			@RequestParam(defaultValue = "true") final boolean flat)
 	
-	@GetMapping("/stocks")
-	public ResponseEntity<Page<Ecsku>> getStocks(
-			@RequestBody final Map<String, String> requestBody,
-			final Pageable pageable)
-
-	@GetMapping("/stocks/{recKey}")
-	public ResponseEntity<EcskuExtended> getStock(
-			@RequestParam(defaultValue = "false") final boolean extended,
-			@PathVariable final BigDecimal recKey)
-	
-	@GetMapping("/stocks/{recKey}/specs")
-	public ResponseEntity<List<EcskuSpecPicture>> getStockSpecs(
-			@PathVariable final BigDecimal recKey)
-
-	@GetMapping("/stocks/{recKey}/overviews")
-	public ResponseEntity<List<EcskuOverviewPicture>> getStockOverviews(
-			@PathVariable final BigDecimal recKey)
 								
 ```
