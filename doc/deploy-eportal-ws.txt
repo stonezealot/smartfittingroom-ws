@@ -1,14 +1,14 @@
 
-cd ~/Work/GIT/eportal-ws
+cd ~/Work/GIT/smartfittingroom-ws
 git checkout .
 git pull
 mvn clean && mvn package -Dmaven.test.skip=true
 cd target
-mv eportal-ws*.jar eportal-ws.jar
+mv smartfittingroom-ws*.jar smartfittingroom-ws.jar
 echo 123 | sudo -S systemctl daemon-reload
-echo 123 | sudo -S service eportal-ws stop
-echo 123 | sudo -S cp eportal-ws.jar /var/eportal-ws/eportal-ws.jar
+echo 123 | sudo -S service smartfittingroom-ws stop
+echo 123 | sudo -S cp smartfittingroom-ws.jar /var/smartfittingroom-ws/smartfittingroom-ws.jar
 echo 123 | sudo -S systemctl daemon-reload
-echo 123 | sudo -S service eportal-ws start
+echo 123 | sudo -S service smartfittingroom-ws start
 
 

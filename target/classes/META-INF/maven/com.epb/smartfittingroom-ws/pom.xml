@@ -9,8 +9,8 @@
 	<version>0.1.0</version>
 	<packaging>jar</packaging>
 
-	<name>eportal-ws</name>
-	<description>EPORTAL</description>
+	<name>smartfittingroom-ws</name>
+	<description>SMARTFITTINGROOM</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
