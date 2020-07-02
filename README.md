@@ -135,6 +135,14 @@ These are the steps for the regular deployment. If you are deploying the project
 @RequestMapping("/api")
 public class AppController
 
+	@GetMapping("/room-items")
+	public ResponseEntity<RfidRoomBufBundle> getRfidRoomBufBundle(@RequestParam final String roomNo)
 	
+	@GetMapping("/highlights")
+	public ResponseEntity<List<EcbestSku>> gethighlights(@RequestParam final String orgId)
+	
+	@GetMapping("/stock-info")
+	public ResponseEntity<StockInfo> getStockInfo(@RequestParam final String orgId, @RequestParam final String locId,
+			@RequestParam final String userId, @RequestParam final String stkId)
 								
 ```

@@ -8,4 +8,15 @@ import org.springframework.stereotype.Service;
 public class ProcedureServicePostgres
 		implements ProcedureService {
 
+	@Override
+	public ProcedureResponse getStockInfo(
+			final String charset,
+			final String orgId,
+			final String locId,
+			final String userId,
+			final String stkId) {
+
+		return new ProcedureResponse(ERR_CODE_OK, "");
+	}
+
 }

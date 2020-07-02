@@ -1,8 +1,13 @@
 package com.epb.smartfittingroom.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,11 +15,40 @@ import org.springframework.stereotype.Service;
 public class ProcedureServiceOracle
 		implements ProcedureService {
 
+	@Override
+	public ProcedureResponse getStockInfo(
+			final String charset,
+			final String orgId,
+			final String locId,
+			final String userId,
+			final String stkId) {
+
+		final SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("v_charset", charset)
+				.addValue("v_org_id", orgId)
+				.addValue("v_loc_id", locId)
+				.addValue("v_user_id", userId)
+				.addValue("v_stk_id", stkId);
+
+		final Map<String, Object> out = this.getStockInfoCall.execute(in);
+		if (!ERR_CODE_OK.equals((String) out.get("v_err_code"))) {
+			throw new RuntimeException((String) out.get("v_err_msg"));
+		}
+
+		final ProcedureResponse response = new ProcedureResponse(
+				(String) out.get("v_err_code"),
+				(String) out.get("v_err_msg"));
+
+		return response;
+	}
+
 	//
 	// fields
 	//
 
 	private final JdbcTemplate jdbcTemplate;
+
+	private final SimpleJdbcCall getStockInfoCall;
 
 	//
 	// constructor
@@ -25,6 +59,10 @@ public class ProcedureServiceOracle
 		super();
 		this.jdbcTemplate = jdbcTemplate;
 		this.jdbcTemplate.setResultsMapCaseInsensitive(true);
+
+		this.getStockInfoCall = new SimpleJdbcCall(this.jdbcTemplate)
+				.withCatalogName("ep_mobile")
+				.withProcedureName("get_stock_info");
 
 	}
 
