@@ -149,9 +149,9 @@ public class AppController
 	public ResponseEntity<RfidRoomBufBundle> smartfittingroomRequest(
 			@RequestParam final String orgId,
 			@RequestParam final String locId,
-			@RequestParam final String roomId,
+			@RequestParam final String roomNo,
 			@RequestParam final String stkId,
 			@RequestParam final String stkattr1,
-			@RequestParam final String stkattr2)		
+			@RequestParam final String stkattr2) 	
 								
 ```

@@ -13,7 +13,7 @@ public interface ProcedureService {
 			String charset,
 			String orgId,
 			String locId,
-			String roomId,
+			String roomNo,
 			String stkId,
 			String stkattr1,
 			String stkattr2);

@@ -10,5 +10,5 @@ import com.epb.smartfittingroom.entity.RfidRoomBufView;
 public interface RfidRoomBufViewRepository
 		extends JpaRepository<RfidRoomBufView, BigDecimal> {
 
-	List<RfidRoomBufView> findByRoomNoOrderByRecKey(String roomNo);
+	List<RfidRoomBufView> findByRoomNoOrderByRecKeyDesc(String roomNo);
 }

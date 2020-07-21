@@ -24,7 +24,7 @@ public class ProcedureServicePostgres
 			final String charset,
 			final String orgId,
 			final String locId,
-			final String roomId,
+			final String roomNo,
 			final String stkId,
 			final String stkattr1,
 			final String stkattr2) {

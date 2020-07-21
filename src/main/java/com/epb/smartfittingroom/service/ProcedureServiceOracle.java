@@ -47,7 +47,7 @@ public class ProcedureServiceOracle
 			final String charset,
 			final String orgId,
 			final String locId,
-			final String roomId,
+			final String roomNo,
 			final String stkId,
 			final String stkattr1,
 			final String stkattr2) {
@@ -56,7 +56,7 @@ public class ProcedureServiceOracle
 				.addValue("v_charset", charset)
 				.addValue("v_org_id", orgId)
 				.addValue("v_loc_id", locId)
-				.addValue("v_room_id", roomId)
+				.addValue("v_room_no", roomNo)
 				.addValue("v_stk_id", stkId)
 				.addValue("v_stkattr1", stkattr1)
 				.addValue("v_stkattr2", stkattr2);

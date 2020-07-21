@@ -36,10 +36,11 @@ public class AppController {
 	@GetMapping("/room-items")
 	public ResponseEntity<RfidRoomBufBundle> getRfidRoomBufBundle(@RequestParam final String roomNo) {
 
-		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository.findByRoomNoOrderByRecKey(roomNo);
+		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
+				.findByRoomNoOrderByRecKeyDesc(roomNo);
 
 		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findByRoomNoOrderByRecKey(roomNo);
+				.findByRoomNoOrderByRecKeyDesc(roomNo);
 
 		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
 	}
@@ -75,7 +76,7 @@ public class AppController {
 	public ResponseEntity<RfidRoomBufBundle> smartfittingroomRequest(
 			@RequestParam final String orgId,
 			@RequestParam final String locId,
-			@RequestParam final String roomId,
+			@RequestParam final String roomNo,
 			@RequestParam final String stkId,
 			@RequestParam final String stkattr1,
 			@RequestParam final String stkattr2) {
@@ -84,7 +85,7 @@ public class AppController {
 				"",
 				orgId,
 				locId,
-				roomId,
+				roomNo,
 				stkId,
 				stkattr1,
 				stkattr2);
@@ -93,10 +94,11 @@ public class AppController {
 			throw new RuntimeException(response.getErrMsg());
 		}
 
-		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository.findByRoomNoOrderByRecKey(roomId);
+		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
+				.findByRoomNoOrderByRecKeyDesc(roomNo);
 
 		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findByRoomNoOrderByRecKey(roomId);
+				.findByRoomNoOrderByRecKeyDesc(roomNo);
 
 		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
 	}
