@@ -7,22 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class RfidRoomReqBuf {
+public class RfidRoomBufView {
 
 	@Id
 	private BigDecimal recKey;
 	private String roomNo;
+	private String tagId;
 	private String pluId;
 	private String stkId;
+	private String name;
+	private String model;
+	private String uomId;
 	private String stkattr1;
 	private String stkattr2;
 	private BigDecimal seqNo;
-	private String statusFlg;
+	private BigDecimal countNo;
 	private Date createDate;
-	private Date ackDate;
-	private Date sendDate;
+	private Date modifyDate;
 
-	public RfidRoomReqBuf() {
+	public RfidRoomBufView() {
 		super();
 	}
 
@@ -42,6 +45,14 @@ public class RfidRoomReqBuf {
 		this.roomNo = roomNo;
 	}
 
+	public String getTagId() {
+		return tagId;
+	}
+
+	public void setTagId(String tagId) {
+		this.tagId = tagId;
+	}
+
 	public String getPluId() {
 		return pluId;
 	}
@@ -56,6 +67,30 @@ public class RfidRoomReqBuf {
 
 	public void setStkId(String stkId) {
 		this.stkId = stkId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getUomId() {
+		return uomId;
+	}
+
+	public void setUomId(String uomId) {
+		this.uomId = uomId;
 	}
 
 	public String getStkattr1() {
@@ -82,12 +117,12 @@ public class RfidRoomReqBuf {
 		this.seqNo = seqNo;
 	}
 
-	public String getStatusFlg() {
-		return statusFlg;
+	public BigDecimal getCountNo() {
+		return countNo;
 	}
 
-	public void setStatusFlg(String statusFlg) {
-		this.statusFlg = statusFlg;
+	public void setCountNo(BigDecimal countNo) {
+		this.countNo = countNo;
 	}
 
 	public Date getCreateDate() {
@@ -98,20 +133,12 @@ public class RfidRoomReqBuf {
 		this.createDate = createDate;
 	}
 
-	public Date getAckDate() {
-		return ackDate;
+	public Date getModifyDate() {
+		return modifyDate;
 	}
 
-	public void setAckDate(Date ackDate) {
-		this.ackDate = ackDate;
-	}
-
-	public Date getSendDate() {
-		return sendDate;
-	}
-
-	public void setSendDate(Date sendDate) {
-		this.sendDate = sendDate;
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 }

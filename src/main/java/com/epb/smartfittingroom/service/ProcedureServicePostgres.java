@@ -19,4 +19,17 @@ public class ProcedureServicePostgres
 		return new ProcedureResponse(ERR_CODE_OK, "");
 	}
 
+	@Override
+	public ProcedureResponse smartfittingroomRequest(
+			final String charset,
+			final String orgId,
+			final String locId,
+			final String roomId,
+			final String stkId,
+			final String stkattr1,
+			final String stkattr2) {
+
+		return new ProcedureResponse(ERR_CODE_OK, "");
+	}
+
 }

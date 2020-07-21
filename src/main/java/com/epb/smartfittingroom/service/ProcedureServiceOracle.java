@@ -42,6 +42,37 @@ public class ProcedureServiceOracle
 		return response;
 	}
 
+	@Override
+	public ProcedureResponse smartfittingroomRequest(
+			final String charset,
+			final String orgId,
+			final String locId,
+			final String roomId,
+			final String stkId,
+			final String stkattr1,
+			final String stkattr2) {
+
+		final SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("v_charset", charset)
+				.addValue("v_org_id", orgId)
+				.addValue("v_loc_id", locId)
+				.addValue("v_room_id", roomId)
+				.addValue("v_stk_id", stkId)
+				.addValue("v_stkattr1", stkattr1)
+				.addValue("v_stkattr2", stkattr2);
+
+		final Map<String, Object> out = this.smartfittingroomRequestCall.execute(in);
+		if (!ERR_CODE_OK.equals((String) out.get("v_err_code"))) {
+			throw new RuntimeException((String) out.get("v_err_msg"));
+		}
+
+		final ProcedureResponse response = new ProcedureResponse(
+				(String) out.get("v_err_code"),
+				(String) out.get("v_err_msg"));
+
+		return response;
+	}
+	
 	//
 	// fields
 	//
@@ -49,6 +80,7 @@ public class ProcedureServiceOracle
 	private final JdbcTemplate jdbcTemplate;
 
 	private final SimpleJdbcCall getStockInfoCall;
+	private final SimpleJdbcCall smartfittingroomRequestCall;
 
 	//
 	// constructor
@@ -63,6 +95,9 @@ public class ProcedureServiceOracle
 		this.getStockInfoCall = new SimpleJdbcCall(this.jdbcTemplate)
 				.withCatalogName("ep_mobile")
 				.withProcedureName("get_stock_info");
+		this.smartfittingroomRequestCall = new SimpleJdbcCall(this.jdbcTemplate)
+				.withCatalogName("ep_mobile")
+				.withProcedureName("smartfittingroom_request");
 
 	}
 

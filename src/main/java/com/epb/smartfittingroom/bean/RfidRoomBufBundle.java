@@ -2,38 +2,38 @@ package com.epb.smartfittingroom.bean;
 
 import java.util.List;
 
-import com.epb.smartfittingroom.entity.RfidRoomBuf;
-import com.epb.smartfittingroom.entity.RfidRoomReqBuf;
+import com.epb.smartfittingroom.entity.RfidRoomBufView;
+import com.epb.smartfittingroom.entity.RfidRoomReqBufView;
 
 public class RfidRoomBufBundle {
 
-	private List<RfidRoomBuf> rfidRoomBufs;
-	private List<RfidRoomReqBuf> rfidRoomReqBufs;
+	private List<RfidRoomBufView> rfidRoomBufViews;
+	private List<RfidRoomReqBufView> rfidRoomReqBufViews;
 
 	public RfidRoomBufBundle() {
 		super();
 	}
 
-	public RfidRoomBufBundle(List<RfidRoomBuf> rfidRoomBufs, List<RfidRoomReqBuf> rfidRoomReqBufs) {
+	public RfidRoomBufBundle(List<RfidRoomBufView> rfidRoomBufViews, List<RfidRoomReqBufView> rfidRoomReqBufViews) {
 		super();
-		this.rfidRoomBufs = rfidRoomBufs;
-		this.rfidRoomReqBufs = rfidRoomReqBufs;
+		this.rfidRoomBufViews = rfidRoomBufViews;
+		this.rfidRoomReqBufViews = rfidRoomReqBufViews;
 	}
 
-	public List<RfidRoomBuf> getRfidRoomBufs() {
-		return rfidRoomBufs;
+	public List<RfidRoomBufView> getRfidRoomBufViews() {
+		return rfidRoomBufViews;
 	}
 
-	public void setRfidRoomBufs(List<RfidRoomBuf> rfidRoomBufs) {
-		this.rfidRoomBufs = rfidRoomBufs;
+	public void setRfidRoomBufViews(List<RfidRoomBufView> rfidRoomBufViews) {
+		this.rfidRoomBufViews = rfidRoomBufViews;
 	}
 
-	public List<RfidRoomReqBuf> getRfidRoomReqBufs() {
-		return rfidRoomReqBufs;
+	public List<RfidRoomReqBufView> getRfidRoomReqBufViews() {
+		return rfidRoomReqBufViews;
 	}
 
-	public void setRfidRoomReqBufs(List<RfidRoomReqBuf> rfidRoomReqBufs) {
-		this.rfidRoomReqBufs = rfidRoomReqBufs;
+	public void setRfidRoomReqBufViews(List<RfidRoomReqBufView> rfidRoomReqBufViews) {
+		this.rfidRoomReqBufViews = rfidRoomReqBufViews;
 	}
 
 }

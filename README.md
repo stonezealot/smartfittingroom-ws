@@ -144,5 +144,14 @@ public class AppController
 	@GetMapping("/stock-info")
 	public ResponseEntity<StockInfo> getStockInfo(@RequestParam final String orgId, @RequestParam final String locId,
 			@RequestParam final String userId, @RequestParam final String stkId)
+			
+	@PostMapping("/request")
+	public ResponseEntity<RfidRoomBufBundle> smartfittingroomRequest(
+			@RequestParam final String orgId,
+			@RequestParam final String locId,
+			@RequestParam final String roomId,
+			@RequestParam final String stkId,
+			@RequestParam final String stkattr1,
+			@RequestParam final String stkattr2)		
 								
 ```

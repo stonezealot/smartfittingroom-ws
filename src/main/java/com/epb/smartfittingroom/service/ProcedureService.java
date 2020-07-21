@@ -9,5 +9,14 @@ public interface ProcedureService {
 			String userId,
 			String stkId);
 
+	ProcedureResponse smartfittingroomRequest(
+			String charset,
+			String orgId,
+			String locId,
+			String roomId,
+			String stkId,
+			String stkattr1,
+			String stkattr2);
+
 	static final String ERR_CODE_OK = "OK";
 }
