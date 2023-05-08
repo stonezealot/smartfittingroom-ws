@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.epb.smartfittingroom.bean.RfidRoomBufBundle;
 import com.epb.smartfittingroom.bean.StockInfo;
 import com.epb.smartfittingroom.entity.AppStockInfo;
-import com.epb.smartfittingroom.entity.EcbestSku;
+import com.epb.smartfittingroom.entity.EcbestView;
+import com.epb.smartfittingroom.entity.Eccat;
+import com.epb.smartfittingroom.entity.Ecsku;
 import com.epb.smartfittingroom.entity.RfidRoomBufView;
 import com.epb.smartfittingroom.entity.RfidRoomReqBufView;
 import com.epb.smartfittingroom.entity.StkmasAttr1;
 import com.epb.smartfittingroom.entity.StkmasAttr2;
 import com.epb.smartfittingroom.repository.AppStockInfoRepository;
-import com.epb.smartfittingroom.repository.EcbestSkuRepository;
+import com.epb.smartfittingroom.repository.EcbestViewRepository;
+import com.epb.smartfittingroom.repository.EccatRepository;
+import com.epb.smartfittingroom.repository.EcskuRepository;
 import com.epb.smartfittingroom.repository.RfidRoomBufViewRepository;
 import com.epb.smartfittingroom.repository.RfidRoomReqBufViewRepository;
 import com.epb.smartfittingroom.repository.StkmasAttr1Repository;
@@ -34,28 +38,41 @@ import com.epb.smartfittingroom.service.ProcedureService;
 public class AppController {
 
 	@GetMapping("/room-items")
-	public ResponseEntity<RfidRoomBufBundle> getRfidRoomBufBundle(@RequestParam final String roomNo) {
+	public ResponseEntity<RfidRoomBufBundle> getRfidRoomBufBundle(
+			@RequestParam
+			final String orgId,
+			@RequestParam
+			final String locId,
+			@RequestParam
+			final String shopId,
+			@RequestParam
+			final String posNo) {
 
 		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
-				.findByRoomNoOrderByRecKeyDesc(roomNo);
+				.findRfidRoomBufView(orgId, locId, shopId, posNo);
 
 		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findByRoomNoOrderByRecKeyDesc(roomNo);
+				.findByRoomNoOrderByRecKeyDesc("");
 
 		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
 	}
 
 	@GetMapping("/highlights")
-	public ResponseEntity<List<EcbestSku>> gethighlights(@RequestParam final String orgId) {
+	public ResponseEntity<List<EcbestView>> gethighlights(@RequestParam
+	final String orgId) {
 
-		final List<EcbestSku> ecbestSkus = this.ecbestSkuRepository.findByOrgIdOrderBySortNum(orgId);
+		final List<EcbestView> ecbestView = this.ecbestViewRepository.findEcbestView(orgId);
 
-		return ResponseEntity.ok(ecbestSkus);
+		return ResponseEntity.ok(ecbestView);
 	}
 
 	@GetMapping("/stock-info")
-	public ResponseEntity<StockInfo> getStockInfo(@RequestParam final String orgId, @RequestParam final String locId,
-			@RequestParam final String userId, @RequestParam final String stkId) {
+	public ResponseEntity<StockInfo> getStockInfo(@RequestParam
+	final String orgId, @RequestParam
+	final String locId,
+			@RequestParam
+			final String userId, @RequestParam
+			final String stkId) {
 
 		final ProcedureResponse response = this.procedureService.getStockInfo("", orgId, locId, userId, stkId);
 
@@ -74,18 +91,26 @@ public class AppController {
 
 	@PostMapping("/request")
 	public ResponseEntity<RfidRoomBufBundle> smartfittingroomRequest(
-			@RequestParam final String orgId,
-			@RequestParam final String locId,
-			@RequestParam final String roomNo,
-			@RequestParam final String stkId,
-			@RequestParam final String stkattr1,
-			@RequestParam final String stkattr2) {
+			@RequestParam
+			final String orgId,
+			@RequestParam
+			final String locId,
+			@RequestParam
+			final String shopId,
+			@RequestParam
+			final String posNo,
+			@RequestParam
+			final String stkId,
+			@RequestParam
+			final String stkattr1,
+			@RequestParam
+			final String stkattr2) {
 
 		final ProcedureResponse response = this.procedureService.smartfittingroomRequest(
 				"",
 				orgId,
 				locId,
-				roomNo,
+				"",
 				stkId,
 				stkattr1,
 				stkattr2);
@@ -95,12 +120,34 @@ public class AppController {
 		}
 
 		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
-				.findByRoomNoOrderByRecKeyDesc(roomNo);
+				.findRfidRoomBufView(orgId, locId, shopId, posNo);
 
 		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findByRoomNoOrderByRecKeyDesc(roomNo);
+				.findByRoomNoOrderByRecKeyDesc("");
 
 		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
+	}
+
+	@GetMapping("/categories")
+	public ResponseEntity<List<Eccat>> getEccats(
+			@RequestParam
+			final String orgId) {
+
+		final List<Eccat> eccat = this.eccatRepository.findEccat(orgId);
+
+		return ResponseEntity.ok(eccat);
+	}
+
+	@GetMapping("/ecsku")
+	public ResponseEntity<List<Ecsku>> getEcskus(
+			@RequestParam
+			final String orgId,
+			@RequestParam(required = false)
+			final String eccatId) {
+
+		final List<Ecsku> ecsku = this.ecskuRepository.findEcsku(orgId, eccatId == null ? "%" : eccatId);
+
+		return ResponseEntity.ok(ecsku);
 	}
 
 	//
@@ -118,7 +165,9 @@ public class AppController {
 	private final StkmasAttr1Repository stkmasAttr1Repository;
 	private final StkmasAttr2Repository stkmasAttr2Repository;
 	private final AppStockInfoRepository appStockInfoRepository;
-	private final EcbestSkuRepository ecbestSkuRepository;
+	private final EcbestViewRepository ecbestViewRepository;
+	private final EccatRepository eccatRepository;
+	private final EcskuRepository ecskuRepository;
 
 	private final ProcedureService procedureService;
 
@@ -134,7 +183,9 @@ public class AppController {
 			final StkmasAttr1Repository stkmasAttr1Repository,
 			final StkmasAttr2Repository stkmasAttr2Repository,
 			final AppStockInfoRepository appStockInfoRepository,
-			final EcbestSkuRepository ecbestSkuRepository) {
+			final EcbestViewRepository ecbestViewRepository,
+			final EccatRepository eccatRepository,
+			final EcskuRepository ecskuRepository) {
 
 		super();
 
@@ -144,7 +195,9 @@ public class AppController {
 		this.stkmasAttr1Repository = stkmasAttr1Repository;
 		this.stkmasAttr2Repository = stkmasAttr2Repository;
 		this.appStockInfoRepository = appStockInfoRepository;
-		this.ecbestSkuRepository = ecbestSkuRepository;
+		this.ecbestViewRepository = ecbestViewRepository;
+		this.eccatRepository = eccatRepository;
+		this.ecskuRepository = ecskuRepository;
 	}
 
 }
