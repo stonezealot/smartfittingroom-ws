@@ -98,7 +98,7 @@ public class ProcedureServiceOracle
 				.withCatalogName("ep_mobile")
 				.withProcedureName("get_stock_info");
 		this.smartfittingroomRequestCall = new SimpleJdbcCall(this.jdbcTemplate)
-				.withCatalogName("ep_mobile")
+				.withCatalogName("ep_mobileutl")
 				.withProcedureName("smartfittingroom_request");
 
 	}
