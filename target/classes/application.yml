@@ -3,9 +3,11 @@ server:
     enabled: true
     min-response-size: 2048
 spring:
+  application:
+    name: SMARTFITTINGROOM
   jackson:
     serialization:
-      INDENT_OUTPUT: true
+      indent-output: true
   servlet:
     multipart:
       max-file-size: 10240000
@@ -26,7 +28,10 @@ eureka:
 #    org.hibernate.type: trace
 ---
 spring:
-  profiles: eureka
+  config:
+    activate:
+      on-profile:
+      - eureka
 eureka:
   instance:
     prefer-ip-address: true
@@ -36,14 +41,20 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 ---
 spring:
-  profiles: postgres
+  config:
+    activate:
+      on-profile:
+      - postgres
   datasource:
     url: jdbc:postgresql://localhost:5432/epb
     username: epb
     password: 9209
 ---
 spring:
-  profiles: oracle
+  config:
+    activate:
+      on-profile:
+      - oracle
   datasource:
     url: jdbc:oracle:thin:LSTUDIO/EPB@//192.168.0.17:1521/orcl
     username: LSTUDIO
@@ -51,4 +62,4 @@ spring:
     driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     properties:
-      hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
+      hibernate.dialect: org.hibernate.dialect.Oracle10gDialect    

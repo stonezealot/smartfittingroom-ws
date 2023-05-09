@@ -2,8 +2,6 @@ package com.epb.smartfittingroom.controller;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +50,7 @@ public class AppController {
 				.findRfidRoomBufView(orgId, locId, shopId, posNo);
 
 		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findByRoomNoOrderByRecKeyDesc("");
+				.findRfidRoomReqBufView(orgId, locId, shopId, posNo);
 
 		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
 	}
@@ -110,7 +108,8 @@ public class AppController {
 				"",
 				orgId,
 				locId,
-				"",
+				shopId,
+				posNo,
 				stkId,
 				stkattr1,
 				stkattr2);
@@ -119,13 +118,7 @@ public class AppController {
 			throw new RuntimeException(response.getErrMsg());
 		}
 
-		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
-				.findRfidRoomBufView(orgId, locId, shopId, posNo);
-
-		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findByRoomNoOrderByRecKeyDesc("");
-
-		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
+		return this.getRfidRoomBufBundle(orgId, locId, shopId, posNo);
 	}
 
 	@GetMapping("/categories")
@@ -158,7 +151,7 @@ public class AppController {
 	// fields
 	//
 
-	private final Log log = LogFactory.getLog(AppController.class);
+//	private final Log log = LogFactory.getLog(AppController.class);
 
 	private final RfidRoomBufViewRepository rfidRoomBufViewRepository;
 	private final RfidRoomReqBufViewRepository rfidRoomReqBufViewRepository;

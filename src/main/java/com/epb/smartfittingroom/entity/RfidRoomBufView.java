@@ -1,7 +1,6 @@
 package com.epb.smartfittingroom.entity;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +14,6 @@ public class RfidRoomBufView {
 	private String locId;
 	private String shopId;
 	private String posNo;
-	private String tagId;
 	private String pluId;
 	private String stkId;
 	private String name;
@@ -23,10 +21,6 @@ public class RfidRoomBufView {
 	private String uomId;
 	private String stkattr1;
 	private String stkattr2;
-	private BigDecimal seqNo;
-	private BigDecimal countNo;
-	private Date createDate;
-	private Date modifyDate;
 
 	public RfidRoomBufView() {
 		super();
@@ -70,14 +64,6 @@ public class RfidRoomBufView {
 
 	public void setPosNo(String posNo) {
 		this.posNo = posNo;
-	}
-
-	public String getTagId() {
-		return tagId;
-	}
-
-	public void setTagId(String tagId) {
-		this.tagId = tagId;
 	}
 
 	public String getPluId() {
@@ -134,38 +120,6 @@ public class RfidRoomBufView {
 
 	public void setStkattr2(String stkattr2) {
 		this.stkattr2 = stkattr2;
-	}
-
-	public BigDecimal getSeqNo() {
-		return seqNo;
-	}
-
-	public void setSeqNo(BigDecimal seqNo) {
-		this.seqNo = seqNo;
-	}
-
-	public BigDecimal getCountNo() {
-		return countNo;
-	}
-
-	public void setCountNo(BigDecimal countNo) {
-		this.countNo = countNo;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public Date getModifyDate() {
-		return modifyDate;
-	}
-
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
 	}
 
 }

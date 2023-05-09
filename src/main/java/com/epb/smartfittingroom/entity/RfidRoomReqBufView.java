@@ -11,7 +11,10 @@ public class RfidRoomReqBufView {
 
 	@Id
 	private BigDecimal recKey;
-	private String roomNo;
+	private String orgId;
+	private String locId;
+	private String shopId;
+	private String posNo;
 	private String pluId;
 	private String stkId;
 	private String name;
@@ -37,12 +40,36 @@ public class RfidRoomReqBufView {
 		this.recKey = recKey;
 	}
 
-	public String getRoomNo() {
-		return roomNo;
+	public String getOrgId() {
+		return orgId;
 	}
 
-	public void setRoomNo(String roomNo) {
-		this.roomNo = roomNo;
+	public void setOrgId(String orgId) {
+		this.orgId = orgId;
+	}
+
+	public String getLocId() {
+		return locId;
+	}
+
+	public void setLocId(String locId) {
+		this.locId = locId;
+	}
+
+	public String getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
+	}
+
+	public String getPosNo() {
+		return posNo;
+	}
+
+	public void setPosNo(String posNo) {
+		this.posNo = posNo;
 	}
 
 	public String getPluId() {
