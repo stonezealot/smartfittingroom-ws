@@ -21,7 +21,6 @@ public class ProcedureServicePostgres
 
 	@Override
 	public ProcedureResponse smartfittingroomRequest(
-			final String charset,
 			final String orgId,
 			final String locId,
 			final String shopId,

@@ -44,7 +44,6 @@ public class ProcedureServiceOracle
 
 	@Override
 	public ProcedureResponse smartfittingroomRequest(
-			final String charset,
 			final String orgId,
 			final String locId,
 			final String shopId,
@@ -54,7 +53,6 @@ public class ProcedureServiceOracle
 			final String stkattr2) {
 
 		final SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("v_charset", charset)
 				.addValue("v_org_id", orgId)
 				.addValue("v_loc_id", locId)
 				.addValue("v_shop_id", shopId)

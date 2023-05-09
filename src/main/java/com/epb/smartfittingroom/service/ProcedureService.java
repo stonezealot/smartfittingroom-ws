@@ -10,7 +10,6 @@ public interface ProcedureService {
 			String stkId);
 
 	ProcedureResponse smartfittingroomRequest(
-			String charset,
 			String orgId,
 			String locId,
 			String shopId,

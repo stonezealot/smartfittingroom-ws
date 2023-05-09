@@ -105,7 +105,6 @@ public class AppController {
 			final String stkattr2) {
 
 		final ProcedureResponse response = this.procedureService.smartfittingroomRequest(
-				"",
 				orgId,
 				locId,
 				shopId,
