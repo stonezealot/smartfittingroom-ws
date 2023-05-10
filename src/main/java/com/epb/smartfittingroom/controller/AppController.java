@@ -56,8 +56,9 @@ public class AppController {
 	}
 
 	@GetMapping("/highlights")
-	public ResponseEntity<List<EcbestView>> gethighlights(@RequestParam
-	final String orgId) {
+	public ResponseEntity<List<EcbestView>> gethighlights(
+			@RequestParam
+			final String orgId) {
 
 		final List<EcbestView> ecbestView = this.ecbestViewRepository.findEcbestView(orgId);
 
@@ -65,11 +66,14 @@ public class AppController {
 	}
 
 	@GetMapping("/stock-info")
-	public ResponseEntity<StockInfo> getStockInfo(@RequestParam
-	final String orgId, @RequestParam
-	final String locId,
+	public ResponseEntity<StockInfo> getStockInfo(
 			@RequestParam
-			final String userId, @RequestParam
+			final String orgId,
+			@RequestParam
+			final String locId,
+			@RequestParam
+			final String userId,
+			@RequestParam
 			final String stkId) {
 
 		final ProcedureResponse response = this.procedureService.getStockInfo("", orgId, locId, userId, stkId);
@@ -142,6 +146,29 @@ public class AppController {
 		return ResponseEntity.ok(ecsku);
 	}
 
+	@PostMapping("/upload-plu")
+	public ResponseEntity<ProcedureResponse> uploadPluIds(
+			@RequestParam
+			final String orgId,
+			@RequestParam
+			final String locId,
+			@RequestParam
+			final String shopId,
+			@RequestParam
+			final String posNo,
+			@RequestParam
+			final String pluIds) {
+
+		final ProcedureResponse response = this.procedureService.smartfittingroomBuf(orgId, locId, shopId, posNo,
+				pluIds);
+
+		if (!ProcedureService.ERR_CODE_OK.equals(response.getErrCode())) {
+			throw new RuntimeException(response.getErrMsg());
+		}
+
+		return ResponseEntity.ok(response);
+	}
+
 	//
 	// request mappings
 	//
@@ -190,6 +217,7 @@ public class AppController {
 		this.ecbestViewRepository = ecbestViewRepository;
 		this.eccatRepository = eccatRepository;
 		this.ecskuRepository = ecskuRepository;
+
 	}
 
 }

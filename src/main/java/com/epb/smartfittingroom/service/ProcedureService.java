@@ -18,5 +18,12 @@ public interface ProcedureService {
 			String stkattr1,
 			String stkattr2);
 
+	ProcedureResponse smartfittingroomBuf(
+			String orgId,
+			String locId,
+			String shopId,
+			String posNo,
+			String pluIds);
+
 	static final String ERR_CODE_OK = "OK";
 }

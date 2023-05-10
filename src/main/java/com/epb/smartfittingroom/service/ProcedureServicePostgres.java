@@ -32,4 +32,15 @@ public class ProcedureServicePostgres
 		return new ProcedureResponse(ERR_CODE_OK, "");
 	}
 
+	@Override
+	public ProcedureResponse smartfittingroomBuf(
+			final String orgId,
+			final String locId,
+			final String shopId,
+			final String posNo,
+			final String pluIds) {
+
+		return new ProcedureResponse(ERR_CODE_OK, "");
+	}
+
 }

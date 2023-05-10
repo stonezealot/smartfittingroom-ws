@@ -73,6 +73,33 @@ public class ProcedureServiceOracle
 		return response;
 	}
 
+	@Override
+	public ProcedureResponse smartfittingroomBuf(
+			final String orgId,
+			final String locId,
+			final String shopId,
+			final String posNo,
+			final String pluIds) {
+
+		final SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("v_org_id", orgId)
+				.addValue("v_loc_id", locId)
+				.addValue("v_shop_id", shopId)
+				.addValue("v_pos_no", posNo)
+				.addValue("v_plu_ids", pluIds);
+
+		final Map<String, Object> out = this.smartfittingroomBufCall.execute(in);
+		if (!ERR_CODE_OK.equals((String) out.get("v_err_code"))) {
+			throw new RuntimeException((String) out.get("v_err_code") + " : " + (String) out.get("v_err_msg"));
+		}
+
+		final ProcedureResponse response = new ProcedureResponse(
+				(String) out.get("v_err_code"),
+				(String) out.get("v_err_msg"));
+
+		return response;
+	}
+
 	//
 	// fields
 	//
@@ -81,6 +108,7 @@ public class ProcedureServiceOracle
 
 	private final SimpleJdbcCall getStockInfoCall;
 	private final SimpleJdbcCall smartfittingroomRequestCall;
+	private final SimpleJdbcCall smartfittingroomBufCall;
 
 	//
 	// constructor
@@ -98,7 +126,9 @@ public class ProcedureServiceOracle
 		this.smartfittingroomRequestCall = new SimpleJdbcCall(this.jdbcTemplate)
 				.withCatalogName("ep_mobileutl")
 				.withProcedureName("smartfittingroom_request");
-
+		this.smartfittingroomBufCall = new SimpleJdbcCall(this.jdbcTemplate)
+				.withCatalogName("ep_mobileutl")
+				.withProcedureName("smartfittingroom_buf");
 	}
 
 }
