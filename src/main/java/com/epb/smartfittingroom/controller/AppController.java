@@ -15,7 +15,7 @@ import com.epb.smartfittingroom.bean.StockInfo;
 import com.epb.smartfittingroom.entity.AppStockInfo;
 import com.epb.smartfittingroom.entity.EcbestView;
 import com.epb.smartfittingroom.entity.Eccat;
-import com.epb.smartfittingroom.entity.Ecsku;
+import com.epb.smartfittingroom.entity.EcskuView;
 import com.epb.smartfittingroom.entity.RfidRoomBufView;
 import com.epb.smartfittingroom.entity.RfidRoomReqBufView;
 import com.epb.smartfittingroom.entity.StkmasAttr1;
@@ -23,7 +23,7 @@ import com.epb.smartfittingroom.entity.StkmasAttr2;
 import com.epb.smartfittingroom.repository.AppStockInfoRepository;
 import com.epb.smartfittingroom.repository.EcbestViewRepository;
 import com.epb.smartfittingroom.repository.EccatRepository;
-import com.epb.smartfittingroom.repository.EcskuRepository;
+import com.epb.smartfittingroom.repository.EcskuViewRepository;
 import com.epb.smartfittingroom.repository.RfidRoomBufViewRepository;
 import com.epb.smartfittingroom.repository.RfidRoomReqBufViewRepository;
 import com.epb.smartfittingroom.repository.StkmasAttr1Repository;
@@ -135,15 +135,15 @@ public class AppController {
 	}
 
 	@GetMapping("/ecsku")
-	public ResponseEntity<List<Ecsku>> getEcskus(
+	public ResponseEntity<List<EcskuView>> getEcskuView(
 			@RequestParam
 			final String orgId,
 			@RequestParam(required = false)
 			final String eccatId) {
 
-		final List<Ecsku> ecsku = this.ecskuRepository.findEcsku(orgId, eccatId == null ? "%" : eccatId);
+		final List<EcskuView> ecskuView = this.ecskuRepository.findEcskuView(orgId, eccatId == null ? "%" : eccatId);
 
-		return ResponseEntity.ok(ecsku);
+		return ResponseEntity.ok(ecskuView);
 	}
 
 	@PostMapping("/upload-plu")
@@ -186,7 +186,7 @@ public class AppController {
 	private final AppStockInfoRepository appStockInfoRepository;
 	private final EcbestViewRepository ecbestViewRepository;
 	private final EccatRepository eccatRepository;
-	private final EcskuRepository ecskuRepository;
+	private final EcskuViewRepository ecskuRepository;
 
 	private final ProcedureService procedureService;
 
@@ -204,7 +204,7 @@ public class AppController {
 			final AppStockInfoRepository appStockInfoRepository,
 			final EcbestViewRepository ecbestViewRepository,
 			final EccatRepository eccatRepository,
-			final EcskuRepository ecskuRepository) {
+			final EcskuViewRepository ecskuRepository) {
 
 		super();
 

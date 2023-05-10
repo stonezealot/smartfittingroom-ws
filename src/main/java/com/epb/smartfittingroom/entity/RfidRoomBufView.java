@@ -16,11 +16,12 @@ public class RfidRoomBufView {
 	private String posNo;
 	private String pluId;
 	private String stkId;
-	private String name;
+	private String stkName;
 	private String model;
 	private String uomId;
 	private String stkattr1;
 	private String stkattr2;
+	private BigDecimal retailListPrice;
 
 	public RfidRoomBufView() {
 		super();
@@ -82,12 +83,12 @@ public class RfidRoomBufView {
 		this.stkId = stkId;
 	}
 
-	public String getName() {
-		return name;
+	public String getStkName() {
+		return stkName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStkName(String stkName) {
+		this.stkName = stkName;
 	}
 
 	public String getModel() {
@@ -120,6 +121,14 @@ public class RfidRoomBufView {
 
 	public void setStkattr2(String stkattr2) {
 		this.stkattr2 = stkattr2;
+	}
+
+	public BigDecimal getRetailListPrice() {
+		return retailListPrice;
+	}
+
+	public void setRetailListPrice(BigDecimal retailListPrice) {
+		this.retailListPrice = retailListPrice;
 	}
 
 }

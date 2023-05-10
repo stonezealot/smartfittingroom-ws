@@ -21,6 +21,7 @@ public class EcbestView {
 	private String stkName;
 	private String model;
 	private String urlAddr;
+	private BigDecimal retailListPrice;
 
 	public EcbestView() {
 		super();
@@ -120,6 +121,14 @@ public class EcbestView {
 
 	public void setUrlAddr(String urlAddr) {
 		this.urlAddr = urlAddr;
+	}
+
+	public BigDecimal getRetailListPrice() {
+		return retailListPrice;
+	}
+
+	public void setRetailListPrice(BigDecimal retailListPrice) {
+		this.retailListPrice = retailListPrice;
 	}
 
 }
