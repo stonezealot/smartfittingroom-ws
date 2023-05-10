@@ -2,6 +2,7 @@ package com.epb.smartfittingroom.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -22,6 +23,8 @@ public class RfidRoomBufView {
 	private String stkattr1;
 	private String stkattr2;
 	private BigDecimal retailListPrice;
+	@Column(name = "STKATTR1_SORT_NUM")
+	private BigDecimal stkattr1SortNum;
 
 	public RfidRoomBufView() {
 		super();
@@ -129,6 +132,14 @@ public class RfidRoomBufView {
 
 	public void setRetailListPrice(BigDecimal retailListPrice) {
 		this.retailListPrice = retailListPrice;
+	}
+
+	public BigDecimal getStkattr1SortNum() {
+		return stkattr1SortNum;
+	}
+
+	public void setStkattr1SortNum(BigDecimal stkattr1SortNum) {
+		this.stkattr1SortNum = stkattr1SortNum;
 	}
 
 }
