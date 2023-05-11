@@ -15,7 +15,7 @@ public class RfidRoomReqBufView {
 	private String orgId;
 	private String locId;
 	private String shopId;
-	private String posNo;
+	private String userId;
 	private String pluId;
 	private String stkId;
 	private String stkName;
@@ -68,12 +68,12 @@ public class RfidRoomReqBufView {
 		this.shopId = shopId;
 	}
 
-	public String getPosNo() {
-		return posNo;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setPosNo(String posNo) {
-		this.posNo = posNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getPluId() {

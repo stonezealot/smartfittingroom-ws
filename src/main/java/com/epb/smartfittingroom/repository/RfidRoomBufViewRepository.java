@@ -12,7 +12,7 @@ public interface RfidRoomBufViewRepository
 		extends JpaRepository<RfidRoomBufView, BigDecimal> {
 
 	@Query("select r from RfidRoomBufView r "
-			+ "where orgId = ?1 and locId= ?2 and shopId = ?3 and posNo = ?4 "
+			+ "where orgId = ?1 and locId= ?2 and shopId = ?3 and userId = ?4 "
 			+ "order by recKey DESC")
-	List<RfidRoomBufView> findRfidRoomBufView(String orgId, String locId, String shopId, String posNo);
+	List<RfidRoomBufView> findRfidRoomBufView(String orgId, String locId, String shopId, String userId);
 }

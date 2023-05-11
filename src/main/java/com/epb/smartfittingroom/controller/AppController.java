@@ -44,13 +44,13 @@ public class AppController {
 			@RequestParam
 			final String shopId,
 			@RequestParam
-			final String posNo) {
+			final String userId) {
 
 		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
-				.findRfidRoomBufView(orgId, locId, shopId, posNo);
+				.findRfidRoomBufView(orgId, locId, shopId, userId);
 
 		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findRfidRoomReqBufView(orgId, locId, shopId, posNo);
+				.findRfidRoomReqBufView(orgId, locId, shopId, userId);
 
 		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
 	}
@@ -100,7 +100,7 @@ public class AppController {
 			@RequestParam
 			final String shopId,
 			@RequestParam
-			final String posNo,
+			final String userId,
 			@RequestParam
 			final String stkId,
 			@RequestParam
@@ -112,7 +112,7 @@ public class AppController {
 				orgId,
 				locId,
 				shopId,
-				posNo,
+				userId,
 				stkId,
 				stkattr1,
 				stkattr2);
@@ -121,7 +121,7 @@ public class AppController {
 			throw new RuntimeException(response.getErrMsg());
 		}
 
-		return this.getRfidRoomBufBundle(orgId, locId, shopId, posNo);
+		return this.getRfidRoomBufBundle(orgId, locId, shopId, userId);
 	}
 
 	@GetMapping("/categories")
@@ -155,11 +155,11 @@ public class AppController {
 			@RequestParam
 			final String shopId,
 			@RequestParam
-			final String posNo,
+			final String userId,
 			@RequestParam
 			final String pluIds) {
 
-		final ProcedureResponse response = this.procedureService.smartfittingroomBuf(orgId, locId, shopId, posNo,
+		final ProcedureResponse response = this.procedureService.smartfittingroomBuf(orgId, locId, shopId, userId,
 				pluIds);
 
 		if (!ProcedureService.ERR_CODE_OK.equals(response.getErrCode())) {

@@ -13,7 +13,7 @@ public interface ProcedureService {
 			String orgId,
 			String locId,
 			String shopId,
-			String posNo,
+			String userId,
 			String stkId,
 			String stkattr1,
 			String stkattr2);
@@ -22,7 +22,7 @@ public interface ProcedureService {
 			String orgId,
 			String locId,
 			String shopId,
-			String posNo,
+			String userId,
 			String pluIds);
 
 	static final String ERR_CODE_OK = "OK";

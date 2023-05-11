@@ -47,7 +47,7 @@ public class ProcedureServiceOracle
 			final String orgId,
 			final String locId,
 			final String shopId,
-			final String posNo,
+			final String userId,
 			final String stkId,
 			final String stkattr1,
 			final String stkattr2) {
@@ -56,7 +56,7 @@ public class ProcedureServiceOracle
 				.addValue("v_org_id", orgId)
 				.addValue("v_loc_id", locId)
 				.addValue("v_shop_id", shopId)
-				.addValue("v_pos_no", posNo)
+				.addValue("v_user_id", userId)
 				.addValue("v_stk_id", stkId)
 				.addValue("v_stkattr1", stkattr1)
 				.addValue("v_stkattr2", stkattr2);
@@ -78,14 +78,14 @@ public class ProcedureServiceOracle
 			final String orgId,
 			final String locId,
 			final String shopId,
-			final String posNo,
+			final String userId,
 			final String pluIds) {
 
 		final SqlParameterSource in = new MapSqlParameterSource()
 				.addValue("v_org_id", orgId)
 				.addValue("v_loc_id", locId)
 				.addValue("v_shop_id", shopId)
-				.addValue("v_pos_no", posNo)
+				.addValue("v_user_id", userId)
 				.addValue("v_plu_ids", pluIds);
 
 		final Map<String, Object> out = this.smartfittingroomBufCall.execute(in);

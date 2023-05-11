@@ -24,7 +24,7 @@ public class ProcedureServicePostgres
 			final String orgId,
 			final String locId,
 			final String shopId,
-			final String posNo,
+			final String userId,
 			final String stkId,
 			final String stkattr1,
 			final String stkattr2) {
@@ -37,7 +37,7 @@ public class ProcedureServicePostgres
 			final String orgId,
 			final String locId,
 			final String shopId,
-			final String posNo,
+			final String userId,
 			final String pluIds) {
 
 		return new ProcedureResponse(ERR_CODE_OK, "");
