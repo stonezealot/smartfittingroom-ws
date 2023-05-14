@@ -44,15 +44,13 @@ public class AppController {
 			@RequestParam
 			final String locId,
 			@RequestParam
-			final String shopId,
-			@RequestParam
 			final String userId) {
 
 		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
-				.findRfidRoomBufView(orgId, locId, shopId, userId);
+				.findRfidRoomBufView(orgId, locId, userId);
 
 		final List<RfidRoomReqBufView> rfidRoomReqBufViews = this.rfidRoomReqBufViewRepository
-				.findRfidRoomReqBufView(orgId, locId, shopId, userId);
+				.findRfidRoomReqBufView(orgId, locId, userId);
 
 		return ResponseEntity.ok(new RfidRoomBufBundle(rfidRoomBufViews, rfidRoomReqBufViews));
 	}
@@ -123,7 +121,7 @@ public class AppController {
 			throw new RuntimeException(response.getErrMsg());
 		}
 
-		return this.getRfidRoomBufBundle(orgId, locId, shopId, userId);
+		return this.getRfidRoomBufBundle(orgId, locId, userId);
 	}
 
 	@GetMapping("/categories")
