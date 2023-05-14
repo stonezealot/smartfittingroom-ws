@@ -63,3 +63,10 @@ spring:
   jpa:
     properties:
       hibernate.dialect: org.hibernate.dialect.Oracle10gDialect    
+---
+spring:
+  data:
+    web:
+      pageable:
+        default-page-size: 40      
+      

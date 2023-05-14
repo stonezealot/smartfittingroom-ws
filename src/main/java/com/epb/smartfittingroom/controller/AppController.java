@@ -3,6 +3,8 @@ package com.epb.smartfittingroom.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -135,13 +137,15 @@ public class AppController {
 	}
 
 	@GetMapping("/ecsku")
-	public ResponseEntity<List<EcskuView>> getEcskuView(
+	public ResponseEntity<Page<EcskuView>> getEcskuView(
 			@RequestParam
 			final String orgId,
 			@RequestParam(required = false)
-			final String eccatId) {
+			final String eccatId,
+			final Pageable pageable) {
 
-		final List<EcskuView> ecskuView = this.ecskuRepository.findEcskuView(orgId, eccatId == null ? "%" : eccatId);
+		final Page<EcskuView> ecskuView = this.ecskuRepository.findEcskuView(orgId, eccatId == null ? "%" : eccatId,
+				pageable);
 
 		return ResponseEntity.ok(ecskuView);
 	}
