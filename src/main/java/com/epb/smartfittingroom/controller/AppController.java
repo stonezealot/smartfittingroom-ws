@@ -8,11 +8,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.epb.smartfittingroom.bean.RfidRoomBufBundle;
+import com.epb.smartfittingroom.bean.SmartfittingroomPayload;
 import com.epb.smartfittingroom.bean.StockInfo;
 import com.epb.smartfittingroom.entity.AppStockInfo;
 import com.epb.smartfittingroom.entity.EcbestView;
@@ -171,9 +173,53 @@ public class AppController {
 		return ResponseEntity.ok(response);
 	}
 
-	//
-	// request mappings
-	//
+	@PostMapping("/acknowledge")
+	public ResponseEntity<ProcedureResponse> smartfittingroomAck(
+			@RequestBody
+			final SmartfittingroomPayload payload) {
+
+		final ProcedureResponse response = this.procedureService.smartfittingroomAck(
+				payload.getOrgId(),
+				payload.getLocId(),
+				payload.getUserId(),
+				payload.getReqRecKey());
+
+		if (!ProcedureService.ERR_CODE_OK.equals(response.getErrCode())) {
+			throw new RuntimeException(response.getErrMsg());
+		}
+
+		return ResponseEntity.ok(response);
+	}
+
+	@PostMapping("/send")
+	public ResponseEntity<ProcedureResponse> smartfittingroomSend(
+			@RequestBody
+			final SmartfittingroomPayload payload) {
+
+		final ProcedureResponse response = this.procedureService.smartfittingroomSend(
+				payload.getOrgId(),
+				payload.getLocId(),
+				payload.getUserId(),
+				payload.getReqRecKey());
+
+		if (!ProcedureService.ERR_CODE_OK.equals(response.getErrCode())) {
+			throw new RuntimeException(response.getErrMsg());
+		}
+
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/room-request")
+	public ResponseEntity<List<RfidRoomReqBufView>> getRfidRoomReqBufView(
+			@RequestParam
+			final String locId) {
+
+		final List<RfidRoomReqBufView> rfidRoomReqBufView = this.rfidRoomReqBufViewRepository
+				.findRfidRoomReqBufView(locId);
+
+		return ResponseEntity.ok(rfidRoomReqBufView);
+
+	}
 
 	//
 	// fields

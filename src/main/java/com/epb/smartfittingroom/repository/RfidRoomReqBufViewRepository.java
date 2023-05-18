@@ -15,4 +15,9 @@ public interface RfidRoomReqBufViewRepository
 			+ "where orgId = ?1 and locId= ?2 and userId = ?3 "
 			+ "order by recKey DESC")
 	List<RfidRoomReqBufView> findRfidRoomReqBufView(String orgId, String locId, String userId);
+
+	@Query("select r from RfidRoomReqBufView r "
+			+ "where locId = ?1 "
+			+ "order by userId, createDate DESC")
+	List<RfidRoomReqBufView> findRfidRoomReqBufView(String locId);
 }

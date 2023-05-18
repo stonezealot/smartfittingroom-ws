@@ -43,4 +43,24 @@ public class ProcedureServicePostgres
 		return new ProcedureResponse(ERR_CODE_OK, "");
 	}
 
+	@Override
+	public ProcedureResponse smartfittingroomAck(
+			final String orgId,
+			final String locId,
+			final String userId,
+			final String reqRecKey) {
+
+		return new ProcedureResponse(ERR_CODE_OK, "");
+	}
+
+	@Override
+	public ProcedureResponse smartfittingroomSend(
+			final String orgId,
+			final String locId,
+			final String userId,
+			final String reqRecKey) {
+
+		return new ProcedureResponse(ERR_CODE_OK, "");
+	}
+
 }

@@ -100,6 +100,56 @@ public class ProcedureServiceOracle
 		return response;
 	}
 
+	@Override
+	public ProcedureResponse smartfittingroomAck(
+			final String orgId,
+			final String locId,
+			final String userId,
+			final String reqRecKey) {
+
+		final SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("v_org_id", orgId)
+				.addValue("v_loc_id", locId)
+				.addValue("v_user_id", userId)
+				.addValue("v_req_rec_key", reqRecKey);
+
+		final Map<String, Object> out = this.smartfittingroomAckCall.execute(in);
+		if (!ERR_CODE_OK.equals((String) out.get("v_err_code"))) {
+			throw new RuntimeException((String) out.get("v_err_code") + " : " + (String) out.get("v_err_msg"));
+		}
+
+		final ProcedureResponse response = new ProcedureResponse(
+				(String) out.get("v_err_code"),
+				(String) out.get("v_err_msg"));
+
+		return response;
+	}
+
+	@Override
+	public ProcedureResponse smartfittingroomSend(
+			final String orgId,
+			final String locId,
+			final String userId,
+			final String reqRecKey) {
+
+		final SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("v_org_id", orgId)
+				.addValue("v_loc_id", locId)
+				.addValue("v_user_id", userId)
+				.addValue("v_req_rec_key", reqRecKey);
+
+		final Map<String, Object> out = this.smartfittingroomSendCall.execute(in);
+		if (!ERR_CODE_OK.equals((String) out.get("v_err_code"))) {
+			throw new RuntimeException((String) out.get("v_err_code") + " : " + (String) out.get("v_err_msg"));
+		}
+
+		final ProcedureResponse response = new ProcedureResponse(
+				(String) out.get("v_err_code"),
+				(String) out.get("v_err_msg"));
+
+		return response;
+	}
+
 	//
 	// fields
 	//
@@ -109,6 +159,8 @@ public class ProcedureServiceOracle
 	private final SimpleJdbcCall getStockInfoCall;
 	private final SimpleJdbcCall smartfittingroomRequestCall;
 	private final SimpleJdbcCall smartfittingroomBufCall;
+	private final SimpleJdbcCall smartfittingroomAckCall;
+	private final SimpleJdbcCall smartfittingroomSendCall;
 
 	//
 	// constructor
@@ -129,6 +181,12 @@ public class ProcedureServiceOracle
 		this.smartfittingroomBufCall = new SimpleJdbcCall(this.jdbcTemplate)
 				.withCatalogName("ep_mobileutl")
 				.withProcedureName("smartfittingroom_buf");
+		this.smartfittingroomAckCall = new SimpleJdbcCall(this.jdbcTemplate)
+				.withCatalogName("ep_mobileutl")
+				.withProcedureName("smartfittingroom_ack");
+		this.smartfittingroomSendCall = new SimpleJdbcCall(this.jdbcTemplate)
+				.withCatalogName("ep_mobileutl")
+				.withProcedureName("smartfittingroom_send");
 	}
 
 }

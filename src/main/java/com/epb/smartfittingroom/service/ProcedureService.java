@@ -25,5 +25,17 @@ public interface ProcedureService {
 			String userId,
 			String pluIds);
 
+	ProcedureResponse smartfittingroomAck(
+			String orgId,
+			String locId,
+			String userId,
+			String reqRecKey);
+
+	ProcedureResponse smartfittingroomSend(
+			String orgId,
+			String locId,
+			String userId,
+			String reqRecKey);
+
 	static final String ERR_CODE_OK = "OK";
 }
