@@ -16,6 +16,7 @@ public class RfidRoomReqBufView {
 	private String locId;
 	private String shopId;
 	private String userId;
+	private BigDecimal roomRecKey;
 	private String pluId;
 	private String stkId;
 	private String stkName;
@@ -74,6 +75,14 @@ public class RfidRoomReqBufView {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public BigDecimal getRoomRecKey() {
+		return roomRecKey;
+	}
+
+	public void setRoomRecKey(BigDecimal roomRecKey) {
+		this.roomRecKey = roomRecKey;
 	}
 
 	public String getPluId() {
