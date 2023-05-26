@@ -22,6 +22,7 @@ public class EcbestView {
 	private String model;
 	private String urlAddr;
 	private BigDecimal retailListPrice;
+	private BigDecimal images;
 
 	public EcbestView() {
 		super();
@@ -129,6 +130,14 @@ public class EcbestView {
 
 	public void setRetailListPrice(BigDecimal retailListPrice) {
 		this.retailListPrice = retailListPrice;
+	}
+
+	public BigDecimal getImages() {
+		return images;
+	}
+
+	public void setImages(BigDecimal images) {
+		this.images = images;
 	}
 
 }

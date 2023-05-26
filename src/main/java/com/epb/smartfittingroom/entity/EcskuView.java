@@ -23,6 +23,7 @@ public class EcskuView {
 	private String urlAddr;
 	private String remark;
 	private BigDecimal retailListPrice;
+	private BigDecimal images;
 
 	public EcskuView() {
 		super();
@@ -138,6 +139,14 @@ public class EcskuView {
 
 	public void setRetailListPrice(BigDecimal retailListPrice) {
 		this.retailListPrice = retailListPrice;
+	}
+
+	public BigDecimal getImages() {
+		return images;
+	}
+
+	public void setImages(BigDecimal images) {
+		this.images = images;
 	}
 
 }

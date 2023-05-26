@@ -25,6 +25,7 @@ public class RfidRoomBufView {
 	private BigDecimal retailListPrice;
 	@Column(name = "STKATTR1_SORT_NUM")
 	private BigDecimal stkattr1SortNum;
+	private BigDecimal images;
 
 	public RfidRoomBufView() {
 		super();
@@ -140,6 +141,14 @@ public class RfidRoomBufView {
 
 	public void setStkattr1SortNum(BigDecimal stkattr1SortNum) {
 		this.stkattr1SortNum = stkattr1SortNum;
+	}
+
+	public BigDecimal getImages() {
+		return images;
+	}
+
+	public void setImages(BigDecimal images) {
+		this.images = images;
 	}
 
 }

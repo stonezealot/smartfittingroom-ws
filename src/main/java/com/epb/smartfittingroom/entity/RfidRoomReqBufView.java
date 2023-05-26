@@ -32,6 +32,7 @@ public class RfidRoomReqBufView {
 	private Date createDate;
 	private Date ackDate;
 	private Date sendDate;
+	private BigDecimal images;
 
 	public RfidRoomReqBufView() {
 		super();
@@ -195,6 +196,14 @@ public class RfidRoomReqBufView {
 
 	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
+	}
+
+	public BigDecimal getImages() {
+		return images;
+	}
+
+	public void setImages(BigDecimal images) {
+		this.images = images;
 	}
 
 }
