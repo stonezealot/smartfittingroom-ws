@@ -13,6 +13,6 @@ public interface RfidRoomBufViewRepository
 
 	@Query("select r from RfidRoomBufView r "
 			+ "where orgId = ?1 and locId= ?2 and userId = ?3 "
-			+ "order by recKey DESC")
+			+ "order by pluId DESC")
 	List<RfidRoomBufView> findRfidRoomBufView(String orgId, String locId, String userId);
 }
