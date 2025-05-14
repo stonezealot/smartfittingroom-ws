@@ -2,6 +2,8 @@ package com.epb.smartfittingroom.controller;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,6 +49,8 @@ public class AppController {
 			final String locId,
 			@RequestParam
 			final String userId) {
+		
+		this.log.info("orgId: " + orgId + " locId: " + locId + " userId: " + userId);
 
 		final List<RfidRoomBufView> rfidRoomBufViews = this.rfidRoomBufViewRepository
 				.findRfidRoomBufView(orgId, locId, userId);
@@ -225,7 +229,7 @@ public class AppController {
 	// fields
 	//
 
-//	private final Log log = LogFactory.getLog(AppController.class);
+	private final Log log = LogFactory.getLog(AppController.class);
 
 	private final RfidRoomBufViewRepository rfidRoomBufViewRepository;
 	private final RfidRoomReqBufViewRepository rfidRoomReqBufViewRepository;
